@@ -3,6 +3,8 @@
 #include <opencv2/opencv.hpp>
 
 int main() {
+  cv::String namedWindow = "image_window";
+
   // Read image
   cv::Mat boltImage = cv::imread("images/bolt.png");
   boltImage.convertTo(boltImage, CV_32F, 1/255.0);
@@ -16,4 +18,10 @@ int main() {
   cv::Mat magnitude, angle;
   cv::cartToPolar(gx, gy, magnitude, angle, 1);
 
+  cv::namedWindow(namedWindow, CV_WINDOW_AUTOSIZE);
+
+  // show image in window
+  cv::imshow(namedWindow, gx);
+  cv::waitKey(0);
+  return 0;
 }
